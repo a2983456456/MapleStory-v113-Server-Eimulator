@@ -16,10 +16,10 @@ repositories {
 }
 
 dependencies {
-    compile 'io.netty:netty-all:4.1.15.Final'
-    compile 'org.slf4j:slf4j-api:1.7.5'
-    compile 'org.slf4j:slf4j-jdk14:1.7.5'
-    compile 'mysql:mysql-connector-java:5.1.37'
+    implementation 'io.netty:netty-all:4.1.15.Final'
+    implementation 'org.slf4j:slf4j-api:1.7.5'
+    implementation 'org.slf4j:slf4j-jdk14:1.7.5'
+    implementation 'mysql:mysql-connector-java:5.1.37'
 }
 
 
@@ -33,15 +33,14 @@ sourceSets {
     }
 }
 
+// Update the path of the jar file.
 task copyJarToDist(type: Copy) {
-    from 'build/dist/MapleStory.jar'
+    from 'build/libs'
     into 'dist'
 }
 
-task buildAndCopy {
-    dependsOn clean
-    dependsOn build
-
-    build.mustRunAfter clean
+// Make the build task depend on the jar task.
+build {
+    dependsOn jar
     finalizedBy copyJarToDist
 }

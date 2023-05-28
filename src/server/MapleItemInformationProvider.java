@@ -938,21 +938,22 @@ public class MapleItemInformationProvider {
     }
 
     public final Equip randomizeStats(final Equip equip) {
-        equip.setStr(getRandStat(equip.getStr(), 5));
-        equip.setDex(getRandStat(equip.getDex(), 5));
-        equip.setInt(getRandStat(equip.getInt(), 5));
-        equip.setLuk(getRandStat(equip.getLuk(), 5));
-        equip.setMatk(getRandStat(equip.getMatk(), 5));
-        equip.setWatk(getRandStat(equip.getWatk(), 5));
-        equip.setAcc(getRandStat(equip.getAcc(), 5));
-        equip.setAvoid(getRandStat(equip.getAvoid(), 5));
-        equip.setJump(getRandStat(equip.getJump(), 5));
-        equip.setHands(getRandStat(equip.getHands(), 5));
-        equip.setSpeed(getRandStat(equip.getSpeed(), 5));
-        equip.setWdef(getRandStat(equip.getWdef(), 10));
-        equip.setMdef(getRandStat(equip.getMdef(), 10));
-        equip.setHp(getRandStat(equip.getHp(), 10));
-        equip.setMp(getRandStat(equip.getMp(), 10));
+        int scale = equip.getItemId()%10000>=5000?2:1;
+        equip.setStr(getRandStat((short)(equip.getStr()*scale), 5));
+        equip.setDex(getRandStat((short)(equip.getDex()*scale), 5));
+        equip.setInt(getRandStat((short)(equip.getInt()*scale), 5));
+        equip.setLuk(getRandStat((short)(equip.getLuk()*scale), 5));
+        equip.setMatk(getRandStat((short)(equip.getMatk()*scale), 5));
+        equip.setWatk(getRandStat((short)(equip.getWatk()*scale), 5));
+        equip.setAcc(getRandStat((short)(equip.getAcc()*scale), 5));
+        equip.setAvoid(getRandStat((short)(equip.getAvoid()*scale), 5));
+        equip.setJump(getRandStat((short)(equip.getJump()*scale), 5));
+        equip.setHands(getRandStat((short)(equip.getHands()*scale), 5));
+        equip.setSpeed(getRandStat((short)(equip.getSpeed()*scale), 5));
+        equip.setWdef(getRandStat((short)(equip.getWdef()*scale), 10));
+        equip.setMdef(getRandStat((short)(equip.getMdef()*scale), 10));
+        equip.setHp(getRandStat((short)(equip.getHp()*scale), 10));
+        equip.setMp(getRandStat((short)(equip.getMp()*scale), 10));
         return equip;
     }
 

@@ -1,5 +1,8 @@
 package client.messages.commands;
 
+import client.SkillFactory;
+import client.inventory.IItem;
+import client.inventory.MapleInventoryType;
 import constants.GameConstants;
 import constants.ServerConstants.PlayerGMRank;
 import client.MapleClient;
@@ -15,6 +18,9 @@ import handling.world.World;
 import client.MapleCharacter;
 import client.inventory.MapleInventoryIdentifier;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Iterator;
+
 import tools.FileoutputUtil;
 
 
@@ -134,10 +140,26 @@ public class PlayerCommand {
             c.getPlayer().dropMessage(5, "指令列表 :");
             c.getPlayer().dropMessage(5, "@查看/@ea <解除異常+查看當前狀態>");
             c.getPlayer().dropMessage(5, "@丟裝/@DropCash <丟棄點裝>");
-            c.getPlayer().dropMessage(5, "@怪物/@mob <查看身邊怪物訊息>");      
+            c.getPlayer().dropMessage(5, "@怪物/@mob <查看身邊怪物訊息>");
             c.getPlayer().dropMessage(5, "@CGM 訊息 <傳送訊息給GM>");
 
-            
+
+            return 1;
+        }
+    }
+
+    public static class 技能 extends CommandExecute {
+
+        public int execute(MapleClient c, String[] splitted) {
+            Iterator<IItem> i = c.getPlayer().getInventory(MapleInventoryType.SETUP).iterator();
+            int idx=59;
+            while (i.hasNext()) {
+                int id=i.next().getItemId();
+                System.out.println(GameConstants.skillmap.get(id));
+                c.getPlayer().changeKeybinding(idx, (byte)1, GameConstants.skillmap.get(id));
+                c.sendPacket(MaplePacketCreator.getKeymap(c.getPlayer().getKeyLayout()));
+                idx++;
+            }
             return 1;
         }
     }

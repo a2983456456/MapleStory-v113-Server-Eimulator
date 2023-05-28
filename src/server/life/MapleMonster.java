@@ -22,13 +22,7 @@ package server.life;
 
 import client.inventory.Equip;
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.ScheduledFuture;
 
@@ -369,12 +363,31 @@ public class MapleMonster extends AbstractLoadedMapleLife {
     public final int killBy(final MapleCharacter killer, final int lastSkill) {
         int totalBaseExp = getMobExp();
         AttackerEntry highest = null;
-        long highdamage = 0;
+        long highdamage = 0,sum=0;
         for (final AttackerEntry attackEntry : attackers) {
+            sum+=attackEntry.getDamage();
             if (attackEntry.getDamage() > highdamage) {
                 highest = attackEntry;
                 highdamage = attackEntry.getDamage();
             }
+        }
+        // 建立一個 ArrayList 來儲存攻擊者，讓我們可以對其進行排序
+        List<AttackerEntry> attackerList = new ArrayList<>(attackers);
+
+        // 進行排序
+        Collections.sort(attackerList, new Comparator<AttackerEntry>() {
+            @Override
+            public int compare(AttackerEntry attacker1, AttackerEntry attacker2) {
+                // 如果 attacker1 的傷害比 attacker2 高，我們返回負數以將其放在前面
+                // 如果 attacker1 的傷害比 attacker2 低，我們返回正數以將其放在後面
+                // 如果兩者傷害相等，我們返回零來保持其原有順序
+                return Long.compare(attacker2.getDamage(), attacker1.getDamage());
+            }
+        });
+
+        // 現在 attackerList 按傷害從高到低排序
+        for (AttackerEntry attacker : attackerList) {
+            getMap().broadcastMessage(MaplePacketCreator.serverNotice(2,getStats().getName()+" : "+attacker.getAttackers().get(0).getAttacker().getName()+"輸出貢獻"+(int)(100*attacker.getDamage()/sum)+"% 共造成 " + attacker.getDamage()+ "點傷害"));
         }
         int baseExp;
         for (final AttackerEntry attackEntry : attackers) {

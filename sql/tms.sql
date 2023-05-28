@@ -85,11 +85,11 @@ CREATE TABLE `alliances` (
   `guild3` int(11) NOT NULL DEFAULT '0',
   `guild4` int(11) NOT NULL DEFAULT '0',
   `guild5` int(11) NOT NULL DEFAULT '0',
-  `rank1` varchar(13) NOT NULL DEFAULT '¤½·|ªø',
-  `rank2` varchar(13) NOT NULL DEFAULT '¤½·|°Æ·|ªø',
-  `rank3` varchar(13) NOT NULL DEFAULT '¤½·|¦¨­û',
-  `rank4` varchar(13) NOT NULL DEFAULT '¤½·|¦¨­û',
-  `rank5` varchar(13) NOT NULL DEFAULT '¤½·|¦¨­û',
+  `rank1` varchar(13) NOT NULL DEFAULT 'å…¬æœƒé•·',
+  `rank2` varchar(13) NOT NULL DEFAULT 'å…¬æœƒå‰¯æœƒé•·',
+  `rank3` varchar(13) NOT NULL DEFAULT 'å…¬æœƒæˆå“¡',
+  `rank4` varchar(13) NOT NULL DEFAULT 'å…¬æœƒæˆå“¡',
+  `rank5` varchar(13) NOT NULL DEFAULT 'å…¬æœƒæˆå“¡',
   `capacity` int(11) NOT NULL DEFAULT '2',
   `notice` varchar(100) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
@@ -330,7 +330,7 @@ CREATE TABLE `buddies` (
   `characterid` int(11) NOT NULL,
   `buddyid` int(11) NOT NULL,
   `pending` tinyint(4) NOT NULL DEFAULT '0',
-  `groupname` varchar(16) NOT NULL DEFAULT '¨ä¥L',
+  `groupname` varchar(16) NOT NULL DEFAULT 'å…¶ä»–',
   PRIMARY KEY (`id`),
   KEY `buddies_ibfk_1` (`characterid`),
   CONSTRAINT `buddies_ibfk_1` FOREIGN KEY (`characterid`) REFERENCES `characters` (`id`) ON DELETE CASCADE
@@ -437,7 +437,7 @@ CREATE TABLE `characters` (
   `junior2` int(11) NOT NULL DEFAULT '0',
   `currentrep` int(11) NOT NULL DEFAULT '0',
   `totalrep` int(11) NOT NULL DEFAULT '0',
-  `charmessage` varchar(128) NOT NULL DEFAULT '¤j®a¦n',
+  `charmessage` varchar(128) NOT NULL DEFAULT 'å¤§å®¶å¥½',
   `expression` int(11) NOT NULL DEFAULT '0',
   `constellation` int(11) NOT NULL DEFAULT '0',
   `blood` int(11) NOT NULL DEFAULT '0',
@@ -21234,10 +21234,10 @@ CREATE TABLE `drop_data_global` (
 -- ----------------------------
 -- Records of drop_data_global
 -- ----------------------------
-INSERT INTO `drop_data_global` VALUES ('1', '-1', '0', '2210040', '1', '1', '0', '10000', '¸U¸t¸`');
-INSERT INTO `drop_data_global` VALUES ('2', '-1', '0', '2210041', '1', '1', '0', '10000', '¸U¸t¸`');
-INSERT INTO `drop_data_global` VALUES ('3', '-1', '0', '2210042', '1', '1', '0', '10000', '¸U¸t¸`');
-INSERT INTO `drop_data_global` VALUES ('4', '-1', '0', '2210008', '1', '1', '0', '1000', '¸U¸t¸`');
+INSERT INTO `drop_data_global` VALUES ('1', '-1', '0', '2210040', '1', '1', '0', '10000', 'è¬è–ç¯€');
+INSERT INTO `drop_data_global` VALUES ('2', '-1', '0', '2210041', '1', '1', '0', '10000', 'è¬è–ç¯€');
+INSERT INTO `drop_data_global` VALUES ('3', '-1', '0', '2210042', '1', '1', '0', '10000', 'è¬è–ç¯€');
+INSERT INTO `drop_data_global` VALUES ('4', '-1', '0', '2210008', '1', '1', '0', '1000', 'è¬è–ç¯€');
 
 -- ----------------------------
 -- Table structure for `drop_data_vana`
@@ -31376,11 +31376,11 @@ CREATE TABLE `guilds` (
   `logo` int(10) unsigned DEFAULT NULL,
   `logoColor` smallint(5) unsigned NOT NULL DEFAULT '0',
   `name` varchar(45) NOT NULL,
-  `rank1title` varchar(45) NOT NULL DEFAULT '¤½·|ªø',
-  `rank2title` varchar(45) NOT NULL DEFAULT '¤½·|°Æ·|ªø',
-  `rank3title` varchar(45) NOT NULL DEFAULT '¤½·|¦¨­û',
-  `rank4title` varchar(45) NOT NULL DEFAULT '¤½·|¦¨­û',
-  `rank5title` varchar(45) NOT NULL DEFAULT '¤½·|¦¨­û',
+  `rank1title` varchar(45) NOT NULL DEFAULT 'å…¬æœƒé•·',
+  `rank2title` varchar(45) NOT NULL DEFAULT 'å…¬æœƒå‰¯æœƒé•·',
+  `rank3title` varchar(45) NOT NULL DEFAULT 'å…¬æœƒæˆå“¡',
+  `rank4title` varchar(45) NOT NULL DEFAULT 'å…¬æœƒæˆå“¡',
+  `rank5title` varchar(45) NOT NULL DEFAULT 'å…¬æœƒæˆå“¡',
   `capacity` int(10) unsigned NOT NULL DEFAULT '10',
   `logoBG` int(10) unsigned DEFAULT NULL,
   `logoBGColor` smallint(5) unsigned NOT NULL DEFAULT '0',

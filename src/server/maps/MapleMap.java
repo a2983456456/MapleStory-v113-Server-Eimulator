@@ -466,7 +466,16 @@ public final class MapleMap {
                     }
                 } else {
                     if (GameConstants.getInventoryType(de.itemId) == MapleInventoryType.EQUIP) {
-                        idrop = ii.randomizeStats((Equip) ii.getEquipById(de.itemId));
+                        if(Randomizer.nextInt(10)==0){
+                            chr.getMap().broadcastMessage(MaplePacketCreator.showEffect("raredrop"));
+                            chr.getMap().broadcastMessage(MaplePacketCreator.playSound("raredrop"));
+                            idrop = ii.randomizeStats((Equip) ii.getEquipById(de.itemId+5000));
+                            idrop.setPosition((short)1);
+                            idrop.setOwner(chr.getName());
+                            World.Broadcast.broadcastSmega(MaplePacketCreator.itemMegaphone("恭喜"+chr.getName()+" : 打到彩虹裝備，太神啦！", true, chr.getClient().getChannel(), idrop).getBytes());
+                        }else{
+                            idrop = ii.randomizeStats((Equip) ii.getEquipById(de.itemId));
+                        }
                     } else {
                         final int range = Math.abs(de.Maximum - de.Minimum);
                         idrop = new Item(de.itemId, (byte) 0, (short) (de.Maximum != 1 ? Randomizer.nextInt(range <= 0 ? 1 : range) + de.Minimum : 1), (byte) 0);
