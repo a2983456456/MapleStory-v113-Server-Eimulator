@@ -28,14 +28,11 @@ function action(mode, type, selection) {
     }
 
     if (status == 0) {
+		cm.teachSkill(21120001 , 30, 30);
         cm.sendSimple("安安 \r\n#b#L0#我要領取寵物#l\r\n#b#L1#我要領取精靈商人#l\r\n#b#L2#我要領取神奇剪刀#l#k");
     } else if (status == 1) {
         if (selection == 0) {
-            	if (!cm.haveItem(5000041, 1, true, true) && cm.canHold(5000041,1)) {
-                    cm.gainPet(5000041, "雪寶", 1, 0, 100, 0);
-            	} else {
-		    cm.sendOk("你已經有了");
-		}
+                    cm.gainPet(5000013 , "大臉", 1, 0, 100, 0,0);
             cm.dispose();
         } else if (selection == 1) {
             	if (!cm.haveItem(5030000, 1, true, true) && cm.canHold(5030000,1)) {

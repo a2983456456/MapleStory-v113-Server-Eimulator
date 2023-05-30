@@ -62,4 +62,7 @@ public class ServerProperties {
     public static String getProperty(String s, String def) {
         return props.getProperty(s, def);
     }
+    public static int getIntProperty(String s, String def) {
+        return Integer.valueOf(props.getProperty(s, def));
+    }
 }

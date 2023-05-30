@@ -386,8 +386,10 @@ public class MapleMonster extends AbstractLoadedMapleLife {
         });
 
         // 現在 attackerList 按傷害從高到低排序
-        for (AttackerEntry attacker : attackerList) {
-            getMap().broadcastMessage(MaplePacketCreator.serverNotice(2,getStats().getName()+" : "+attacker.getAttackers().get(0).getAttacker().getName()+"輸出貢獻"+(int)(100*attacker.getDamage()/sum)+"% 共造成 " + attacker.getDamage()+ "點傷害"));
+        if(getStats().isBoss()) {
+            for (AttackerEntry attacker : attackerList) {
+                getMap().broadcastMessage(MaplePacketCreator.serverNotice(2, getStats().getName() + " : " + attacker.getAttackers().get(0).getAttacker().getName() + "輸出貢獻" + (int) (100 * attacker.getDamage() / sum) + "% 共造成 " + attacker.getDamage() + "點傷害"));
+            }
         }
         int baseExp;
         for (final AttackerEntry attackEntry : attackers) {

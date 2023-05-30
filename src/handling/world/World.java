@@ -1365,7 +1365,7 @@ public class World {
     }
 
     public static void registerRespawn() {
-        WorldTimer.getInstance().register(new Respawn(), 3000); //divisible by 9000 if possible.
+        WorldTimer.getInstance().register(new Respawn(), 1000); //divisible by 9000 if possible.
         //3000 good or bad? ive no idea >_>
         //buffs can also be done, but eh
     }

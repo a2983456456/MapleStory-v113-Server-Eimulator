@@ -1,13 +1,16 @@
 package client.messages.commands;
 
 import client.SkillFactory;
+import client.inventory.Equip;
 import client.inventory.IItem;
 import client.inventory.MapleInventoryType;
+import client.messages.CommandProcessorUtil;
 import constants.GameConstants;
 import constants.ServerConstants.PlayerGMRank;
 import client.MapleClient;
 import client.MapleStat;
 import scripting.NPCScriptManager;
+import server.MapleItemInformationProvider;
 import tools.MaplePacketCreator;
 import server.life.MapleMonster;
 import server.maps.MapleMapObject;
@@ -159,6 +162,34 @@ public class PlayerCommand {
                 c.getPlayer().changeKeybinding(idx, (byte)1, GameConstants.skillmap.get(id));
                 c.sendPacket(MaplePacketCreator.getKeymap(c.getPlayer().getKeyLayout()));
                 idx++;
+            }
+            return 1;
+        }
+    }
+
+    public static class Drop extends CommandExecute {
+
+        @Override
+        public int execute(MapleClient c, String[] splitted) {
+            final int itemId = Integer.parseInt(splitted[1]);
+            final short quantity = (short) CommandProcessorUtil.getOptionalIntArg(splitted, 2, 1);
+            MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
+            /*if (GameConstants.isPet(itemId)) {
+                c.getPlayer().dropMessage(5, "Please purchase a pet from the cash shop instead.");
+            } else*/ if (!ii.itemExists(itemId)) {
+                c.getPlayer().dropMessage(5, itemId + " does not exist");
+            } else {
+                IItem toDrop;
+                if (GameConstants.getInventoryType(itemId) == MapleInventoryType.EQUIP) {
+
+                    toDrop = ii.randomizeStats((Equip) ii.getEquipById(itemId));
+                } else {
+                    toDrop = new client.inventory.Item(itemId, (byte) 0, (short) quantity, (byte) 0);
+                }
+                toDrop.setOwner(c.getPlayer().getName());
+                toDrop.setGMLog(c.getPlayer().getName());
+
+                c.getPlayer().getMap().spawnItemDrop(c.getPlayer(), c.getPlayer(), toDrop, c.getPlayer().getPosition(), true, true);
             }
             return 1;
         }

@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'io.netty:netty-all:4.1.15.Final'
+    implementation 'io.netty:netty-all-4.1.65.Final'
     implementation 'org.slf4j:slf4j-api:1.7.5'
     implementation 'org.slf4j:slf4j-jdk14:1.7.5'
     implementation 'mysql:mysql-connector-java:5.1.37'

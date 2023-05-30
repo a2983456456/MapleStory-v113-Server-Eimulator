@@ -821,15 +821,6 @@ public class MapleInventoryManipulator {
         checkskill(c); return true;
     }
     public static void checkskill(MapleClient c){
-        System.out.println("hit checkskill");
-        Iterator<IItem> i = c.getPlayer().getInventory(MapleInventoryType.SETUP).iterator();
-        while (i.hasNext()) {
-            IItem it = i.next();
-            int id = it.getItemId(), num=it.getQuantity(), skill=GameConstants.skillmap.get(id);
-            System.out.println("skill "+id+" "+num+" "+skill);
-            if(skill!=-1){
-                c.getPlayer().changeSkillLevel(SkillFactory.getSkill(skill), (byte)num,(byte)1);
-            }
-        }
+
     }
 }

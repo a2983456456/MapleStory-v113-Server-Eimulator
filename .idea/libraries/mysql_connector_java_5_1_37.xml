@@ -2,9 +2,9 @@
   <library name="mysql-connector-java-5.1.37">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/dist/lib/mysql-connector-java-5.1.37.jar!/" />
-      <root url="jar://$PROJECT_DIR$/dist/lib/netty-all-4.1.15.Final.jar!/" />
       <root url="jar://$PROJECT_DIR$/dist/lib/slf4j-api-1.7.5.jar!/" />
       <root url="jar://$PROJECT_DIR$/dist/lib/slf4j-jdk14-1.7.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/netty-all-4.1.65.Final.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

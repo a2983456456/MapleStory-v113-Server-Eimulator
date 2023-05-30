@@ -470,6 +470,7 @@ public final class MapleMap {
                             chr.getMap().broadcastMessage(MaplePacketCreator.showEffect("raredrop"));
                             chr.getMap().broadcastMessage(MaplePacketCreator.playSound("raredrop"));
                             idrop = ii.randomizeStats((Equip) ii.getEquipById(de.itemId+5000));
+                            System.out.println("rare drop: "+(de.itemId+5000));
                             idrop.setPosition((short)1);
                             idrop.setOwner(chr.getName());
                             World.Broadcast.broadcastSmega(MaplePacketCreator.itemMegaphone("恭喜"+chr.getName()+" : 打到彩虹裝備，太神啦！", true, chr.getClient().getChannel(), idrop).getBytes());
